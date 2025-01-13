@@ -1,4 +1,6 @@
-fn main() -> Result<(), Box<dyn std::error::Error>> {
+mod models;
+mod config;
+
+fn main() {
     println!("Hello, world!");
-    Ok(())
 }
