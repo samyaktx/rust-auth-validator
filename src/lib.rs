@@ -3,6 +3,7 @@ mod config;
 mod dtos;
 mod error;
 mod database;
+mod utils;
 
 use axum::http::header::{
     ACCEPT, 
