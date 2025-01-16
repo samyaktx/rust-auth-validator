@@ -1,9 +1,6 @@
-mod models;
-mod config;
-mod dtos;
-mod error;
-mod database;
+use auth_validator::run;
 
-fn main() {
-    println!("Hello, world!");
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    run().await
 }
