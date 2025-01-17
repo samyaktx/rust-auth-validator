@@ -4,6 +4,7 @@ mod dtos;
 mod error;
 mod database;
 mod utils;
+mod middleware;
 
 use axum::http::header::{
     ACCEPT, 
