@@ -5,6 +5,7 @@ mod error;
 mod database;
 mod utils;
 mod middleware;
+mod email;
 
 use axum::http::header::{
     ACCEPT, 
