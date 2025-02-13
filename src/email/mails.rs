@@ -34,7 +34,7 @@ pub async fn send_welcome_email(
     send_email(to_email, subject, template_path, &placeholders).await
 }
 
-pub async fn send_password_reset_email(
+pub async fn send_forgot_password_email(
     to_email: &str,
     username: &str,
     reset_link: &str
