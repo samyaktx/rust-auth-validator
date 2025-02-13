@@ -6,6 +6,10 @@ mod database;
 mod utils;
 mod middleware;
 mod email;
+mod controller;
+mod routes;
+
+use std::sync::Arc;
 
 use axum::http::header::{
     ACCEPT, 
@@ -14,10 +18,9 @@ use axum::http::header::{
 };
 use axum::http::HeaderValue;
 use axum::http::Method;
-use axum::Extension;
-use axum::Router;
 use config::Config;
 use database::DBClient;
+use routes::create_router;
 use sqlx::postgres::PgPoolOptions;
 use tower_http::cors::CorsLayer;
 use tracing_subscriber::filter::LevelFilter;
@@ -67,8 +70,7 @@ pub async fn run() -> Result<(), Box<dyn std::error::Error>> {
         db_client,
     };
 
-    let app = Router::new()
-        .layer(Extension(app_state))
+    let app = create_router(Arc::new(app_state))
         .layer(cors.clone());
 
     println!(

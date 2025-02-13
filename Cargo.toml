@@ -1,7 +1,11 @@
 [package]
-name = "rust-auth-validator"
+name = "auth-validator"
 version = "0.1.0"
 edition = "2021"
+
+# [lints.rust]
+# unsafe_code = "forbid"
+# unused = { level = "allow", priority = -1 } # For exploratory dev.
 
 [dependencies]
 chrono = { version = "0.4.34", features = ["serde"] }
@@ -21,6 +25,7 @@ argon2 = "0.5.3"
 jsonwebtoken = "9.3.0"
 axum-extra = { version = "0.10.0", features = ["cookie"] }
 lettre = "0.11.11"
+time = "0.3.20"
 
 [lib]
 name = "auth_validator"

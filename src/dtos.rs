@@ -127,7 +127,7 @@ pub struct RoleUpdateDto {
 fn validate_user_role(role: &UserRole) -> Result<(), validator::ValidationError> {
     match role {
         UserRole::Admin | UserRole::User => Ok(()),
-        _ => Err(validator::ValidationError::new("Invalid role")),
+        // _ => Err(validator::ValidationError::new("Invalid role")),
     }
 }
 

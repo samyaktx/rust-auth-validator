@@ -6,7 +6,7 @@ use axum::{
 use serde::{Deserialize, Serialize};
 use std::fmt;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Serialize, Deserialize)]
 pub struct ErrorResponse {
     pub status: String,
     pub message: String,
@@ -18,14 +18,14 @@ impl fmt::Display for ErrorResponse {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(PartialEq)]
 pub enum ErrorMessage {
     EmptyPassword,
     ExceededMaxPasswordLength(usize),
     InvalidHashFormat,
     HashingError,
     InvalidToken,
-    ServerError,
+    // ServerError,
     WrongCredentials,
     EmailExists,
     UserNoLongerExists,
@@ -48,7 +48,7 @@ impl ErrorMessage {
             ErrorMessage::InvalidHashFormat => "Invalid password hash format".to_string(),
             ErrorMessage::HashingError => "An error occurred while hashing the password".to_string(),
             ErrorMessage::InvalidToken => "Invalid token".to_string(),
-            ErrorMessage::ServerError => "An error occurred on the server".to_string(),
+            // ErrorMessage::ServerError => "An error occurred on the server".to_string(),
             ErrorMessage::WrongCredentials => "Wrong credentials".to_string(),
             ErrorMessage::EmailExists => "Email already exists".to_string(),
             ErrorMessage::UserNoLongerExists => "User no longer exists".to_string(),
@@ -122,3 +122,9 @@ impl fmt::Display for HttpError {
 }
 
 impl std::error::Error for HttpError {}
+
+impl IntoResponse for HttpError {
+    fn into_response(self) -> Response {
+        self.into_http_response()
+    }
+}
